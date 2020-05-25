@@ -1,6 +1,10 @@
+//https://blog.bitsrc.io/building-a-react-autocomplete-component-from-scratch-b78105324f4c
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Autocomplete.css';
+import Card from 'react-bootstrap/Card';
+
+let cardList;
 
 export class Autocomplete extends Component {
 static propTypes = {
@@ -11,6 +15,7 @@ constructor(propTypes) {
   super(propTypes);
 
   this.state = {
+    clicked: false,
     activeOptionIndex: 0,
     filteredOptions: [],
     showOptions: false,
@@ -34,11 +39,57 @@ this.setState({
 
 onClick = (e) => {
   this.setState({
+    clicked: true,
     activeOptionIndex: 0,
     filteredOption: [],
     showOptions: false,
     userInput: e.currentTarget.innerText
   });
+
+  cardList = (
+    //https://react-bootstrap.github.io/components/cards/
+    <div>
+    <Card style={{ width: '18rem' }}>
+    <Card.Body>
+      <Card.Title>Card Title</Card.Title>
+      <Card.Text>
+        Some quick example text to build on the card title and make up the bulk of
+        the card's content.
+      </Card.Text>
+    </Card.Body>
+  </Card>
+
+  <Card style={{ width: '18rem' }}>
+    <Card.Body>
+      <Card.Title>Card Title 2</Card.Title>
+      <Card.Text>
+        Some quick example text to build on the card title and make up the bulk of
+        the card's content.
+      </Card.Text>
+    </Card.Body>
+  </Card>
+
+  <Card style={{ width: '18rem' }}>
+    <Card.Body>
+      <Card.Title>Card Title 2</Card.Title>
+      <Card.Text>
+        Some quick example text to build on the card title and make up the bulk of
+        the card's content.
+      </Card.Text>
+    </Card.Body>
+  </Card>
+
+  <Card style={{ width: '18rem' }}>
+    <Card.Body>
+      <Card.Title>Card Title 2</Card.Title>
+      <Card.Text>
+        Some quick example text to build on the card title and make up the bulk of
+        the card's content.
+      </Card.Text>
+    </Card.Body>
+  </Card>
+  </div>
+  );
 };
     
 onKeyDown = (e) => {
@@ -72,6 +123,7 @@ render() {
       } = this;
     
       let optionList;
+
       if (showOptions && userInput) {
         if (filteredOptions.length) {
           optionList = (
@@ -84,11 +136,13 @@ render() {
                 return (
                   <li className={className} key={optionName} onClick={onClick}>
                     {optionName}
+                      {cardList}
                   </li>
                 );
               })}
             </ul>
           );
+
         } else {
           optionList = (
             <div className="no-options">
@@ -105,8 +159,10 @@ render() {
           value={userInput}
           />
           <br></br>
+   
           <input type="submit" value="" className="search-btn" value="Search"/>
           {optionList}
+          {this.state.clicked && <div>{cardList}</div>}          
         </div>
     );
   }

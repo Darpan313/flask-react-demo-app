@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Autocomplete from './Autocomplete';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const App = () => {
   return (
     <div className="App">
