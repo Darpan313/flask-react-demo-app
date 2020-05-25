@@ -1,34 +1,20 @@
-import React, {useState, useEffect} from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
-
-function App() {
-  const [currentTime, setCurrentTime] = useState(0);
-
-  useEffect(()=>{
-    fetch('/api/time').then(res => res.json()).then(data => {
-      setCurrentTime(data.time);
-    });
-  },[]);
+import Autocomplete from './Autocomplete';
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <p> This is Group-19. The current time is {currentTime}.</p>
-      </header>
+    <div className="App">      
+      <Autocomplete
+        options={[
+          'Web Development',
+          'Software Development',
+          'Cloud Computing',
+          'Mobile Computing',
+          'Machine Learning',
+          'Visual analytics',
+        ]}
+      />
     </div>
   );
-}
-
+};
 export default App;
