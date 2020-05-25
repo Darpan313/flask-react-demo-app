@@ -7,7 +7,7 @@ const App = () => {
   return (
     <div className="App">
 
-    <div>
+      <div>
         <p>
           <b>CSCI5709 - Advanced Web Services</b>
         </p>
@@ -26,19 +26,19 @@ const App = () => {
           <br></br>
           6. Yuganthi Krishnamurthy (B00839935)
         </p>
-    </div>
+      </div>
 
-    <div>      
-      <Autocomplete
-        options={[
-          'Web Development',
-          'Software Development',
-          'Cloud Computing',
-          'Mobile Computing',
-          'Machine Learning',
-          'Visual analytics',
-        ]}
-      /> 
+      <div>
+        <Autocomplete
+          options={[
+            'Web Development',
+            'Software Development',
+            'Cloud Computing',
+            'Mobile Computing',
+            'Machine Learning',
+            'Visual analytics',
+          ]}
+        />
       </div>
     </div>
   );
