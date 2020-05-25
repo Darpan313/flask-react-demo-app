@@ -35,6 +35,7 @@ export class Autocomplete extends Component {
       showOptions: true,
       userInput
     });
+    cardList="";
   };
 
   onClick = (e) => {
@@ -46,6 +47,7 @@ export class Autocomplete extends Component {
       userInput: e.currentTarget.innerText
     });
 
+    cardList = {};
     cardList = (
       //Source: https://react-bootstrap.github.io/components/cards/
       <div>
