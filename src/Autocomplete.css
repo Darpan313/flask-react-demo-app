@@ -1,4 +1,4 @@
-.search-box {       /* https://medium.com/@willhowardgb/building-a-beautiful-text-input-component-in-react-f85564cc7e86*/
+.search-box {       /*Source: https://medium.com/@willhowardgb/building-a-beautiful-text-input-component-in-react-f85564cc7e86*/
     width: 20%;
     height: 40px;
     border-radius: 7px;
@@ -16,7 +16,7 @@
   .search-btn {
     width: 7%;
     height: 40px;
-    background-color: #4CAF50; /* W3 school */
+    background-color: #4CAF50; /*Source: W3 school */
     border: none;
     color: white;
     position: relative;

@@ -1,4 +1,4 @@
-//https://blog.bitsrc.io/building-a-react-autocomplete-component-from-scratch-b78105324f4c
+//Source: https://blog.bitsrc.io/building-a-react-autocomplete-component-from-scratch-b78105324f4c
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Autocomplete.css';
@@ -47,7 +47,7 @@ export class Autocomplete extends Component {
     });
 
     cardList = (
-      //https://react-bootstrap.github.io/components/cards/
+      //Source: https://react-bootstrap.github.io/components/cards/
       <div>
         <Card style={{ width: '18rem' }}>
           <Card.Body>
