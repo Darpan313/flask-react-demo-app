@@ -54,7 +54,7 @@ export class Autocomplete extends Component {
 
       <div className="row ml-4 mr-4 mt-4">
         <div className="col col-sm-3">
-          <Card style={{ width: '18rem' }}>
+          <Card style={{ width: '18rem', background: '#D4FACE'}}>
             <Card.Body>
               <Card.Title>Card Title 1</Card.Title>
               <Card.Text>
@@ -65,35 +65,35 @@ export class Autocomplete extends Component {
           </Card>
         </div>
         <div className="col col-sm-3">
-          <Card style={{ width: '18rem' }}>
+          <Card style={{ width: '18rem', background: '#D4FACE' }}>
             <Card.Body>
               <Card.Title>Card Title 2</Card.Title>
               <Card.Text>
                 Some quick example text to build on the card title and make up the bulk of
                 the card's content.
-      </Card.Text>
+              </Card.Text>
             </Card.Body>
           </Card>
         </div>
         <div className="col col-sm-3">
-          <Card style={{ width: '18rem' }}>
+          <Card style={{ width: '18rem', background: '#D4FACE' }}>
             <Card.Body>
               <Card.Title>Card Title 3</Card.Title>
               <Card.Text>
                 Some quick example text to build on the card title and make up the bulk of
                 the card's content.
-      </Card.Text>
+              </Card.Text>
             </Card.Body>
           </Card>
         </div>
         <div className="col col-sm-3">
-          <Card style={{ width: '18rem' }}>
+          <Card style={{ width: '18rem', background: '#D4FACE' }}>
             <Card.Body>
               <Card.Title>Card Title 4</Card.Title>
               <Card.Text>
                 Some quick example text to build on the card title and make up the bulk of
                 the card's content.
-      </Card.Text>
+            </Card.Text>
             </Card.Body>
           </Card>
         </div>
