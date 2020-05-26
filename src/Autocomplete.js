@@ -35,7 +35,7 @@ export class Autocomplete extends Component {
       showOptions: true,
       userInput
     });
-    cardList="";
+    cardList = "";
   };
 
   onClick = (e) => {
@@ -51,54 +51,53 @@ export class Autocomplete extends Component {
     cardList = (
       //Source: https://react-bootstrap.github.io/components/cards/
 
-      <div class="row ">
-        <div class="col-md-3">
-        <Card style={{ width: '18rem' }}>
-          <Card.Body>
-            <Card.Title>Card Title 1</Card.Title>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the bulk of
-              the card's content.
-      </Card.Text>
-          </Card.Body>
-        </Card>
+      <div className="row ml-4 mr-4 mt-4">
+        <div className="col col-sm-3">
+          <Card style={{ width: '18rem' }}>
+            <Card.Body>
+              <Card.Title>Card Title 1</Card.Title>
+              <Card.Text>
+                Some quick example text to build on the card title and make up the bulk of
+                the card's content.
+                </Card.Text>
+            </Card.Body>
+          </Card>
         </div>
-        <div class="col-md-3">
-        <Card style={{ width: '18rem' }}>
-          <Card.Body>
-            <Card.Title>Card Title 2</Card.Title>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the bulk of
-              the card's content.
+        <div className="col col-sm-3">
+          <Card style={{ width: '18rem' }}>
+            <Card.Body>
+              <Card.Title>Card Title 2</Card.Title>
+              <Card.Text>
+                Some quick example text to build on the card title and make up the bulk of
+                the card's content.
       </Card.Text>
-          </Card.Body>
-        </Card>
+            </Card.Body>
+          </Card>
         </div>
-        <div class="col-md-3">
-        <Card style={{ width: '18rem' }}>
-          <Card.Body>
-            <Card.Title>Card Title 3</Card.Title>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the bulk of
-              the card's content.
+        <div className="col col-sm-3">
+          <Card style={{ width: '18rem' }}>
+            <Card.Body>
+              <Card.Title>Card Title 3</Card.Title>
+              <Card.Text>
+                Some quick example text to build on the card title and make up the bulk of
+                the card's content.
       </Card.Text>
-          </Card.Body>
-        </Card>
+            </Card.Body>
+          </Card>
         </div>
-        <div class="col-md-3">
-        <Card style={{ width: '18rem' }}>
-          <Card.Body>
-            <Card.Title>Card Title 4</Card.Title>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the bulk of
-              the card's content.
+        <div className="col col-sm-3">
+          <Card style={{ width: '18rem' }}>
+            <Card.Body>
+              <Card.Title>Card Title 4</Card.Title>
+              <Card.Text>
+                Some quick example text to build on the card title and make up the bulk of
+                the card's content.
       </Card.Text>
-          </Card.Body>
-        </Card>
+            </Card.Body>
+          </Card>
         </div>
-       
       </div>
-     
+
     );
   };
 
@@ -137,11 +136,11 @@ export class Autocomplete extends Component {
     if (showOptions && userInput) {
       if (filteredOptions.length) {
         optionList = (
-          <ul className="options">
+          <ul className="suggestions">
             {filteredOptions.map((optionName, index) => {
               let className;
               if (index === activeOptionIndex) {
-                className = 'option-active';
+                className = 'suggestion-active';
               }
               return (
                 <li className={className} key={optionName} onClick={onClick}>
@@ -155,7 +154,7 @@ export class Autocomplete extends Component {
 
       } else {
         optionList = (
-          <div className="no-options">
+          <div className="no-suggestions">
             <em>No Option!</em>
           </div>
         );
@@ -170,8 +169,8 @@ export class Autocomplete extends Component {
         />
         <br></br>
 
-        <input type="submit" value="" className="search-btn" value="Search" />
         {optionList}
+        <input type="submit" value="" className="search-btn" value="Search" />
         {this.state.clicked && <div>{cardList}</div>}
       </div>
     );
