@@ -1,3 +1,6 @@
+.search{
+  display: inline;
+}
 .search-box {       /*Source: https://medium.com/@willhowardgb/building-a-beautiful-text-input-component-in-react-f85564cc7e86*/
     width: 20%;
     height: 40px;
@@ -18,15 +21,48 @@
     height: 40px;
     background-color: #4CAF50; /*Source: W3 school */
     border: none;
-    color: white;
+    color: #fae042;
     position: relative;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
-    margin-top: 10px;
+    margin-left: 10px;
 }
 
   .search-btn:hover {
     position: relative;
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.2);
   }
+
+  .no-options {
+  color: #999;
+  padding: 0.5rem;
+}
+
+.options {
+  border: 1px solid #999;
+  border-top-width: 0;
+  list-style: none;
+  margin-top: 0;
+  margin-left: 36%;
+  max-height: 143px;
+  overflow-y: auto;
+  padding-left: 0;
+  width: calc(292px + 1rem);
+}
+
+.options li {
+  padding: 0.5rem;
+}
+
+.option-active,
+.options li:hover {
+  background-color: #4CAF50;
+  color: #fae042;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.options li:not(:last-of-type) {
+  border-bottom: 1px solid #999;
+}
