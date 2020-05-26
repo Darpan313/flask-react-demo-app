@@ -51,6 +51,7 @@ export class Autocomplete extends Component {
     cardList = (
       //Source: https://react-bootstrap.github.io/components/cards/
 
+
       <div className="row ml-4 mr-4 mt-4">
         <div className="col col-sm-3">
           <Card style={{ width: '18rem' }}>
@@ -167,7 +168,6 @@ export class Autocomplete extends Component {
           onKeyDown={onKeyDown}
           value={userInput}
         />
-        <br></br>
 
         {optionList}
         <input type="submit" value="" className="search-btn" value="Search" />
