@@ -1,5 +1,5 @@
 .search-box {       /*Source: https://medium.com/@willhowardgb/building-a-beautiful-text-input-component-in-react-f85564cc7e86*/
-    width: 20%;
+    width: calc(300px + 1rem);
     height: 40px;
     border-radius: 7px;
     position: relative;
@@ -29,4 +29,38 @@
   .search-btn:hover {
     position: relative;
     box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  .no-suggestions {
+    color: #999;
+    padding: 0.5rem;
+  }
+  
+  .suggestions {
+    border: 1px solid #999;
+    border-top-width: 0;
+    list-style: none;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 143px;
+    overflow-y: auto;
+    padding-left: 0;
+    width: calc(300px + 1rem);
+  }
+  
+  .suggestions li {
+    padding: 0.5rem;
+  }
+  
+  .suggestion-active,
+  .suggestions li:hover {
+    background-color: #4CAF50;
+    color: #fae042;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  
+  .suggestions li:not(:last-of-type) {
+    border-bottom: 1px solid #999;
   }
