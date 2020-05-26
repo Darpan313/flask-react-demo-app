@@ -50,17 +50,20 @@ export class Autocomplete extends Component {
     cardList = {};
     cardList = (
       //Source: https://react-bootstrap.github.io/components/cards/
-      <div>
+
+      <div class="row ">
+        <div class="col-md-3">
         <Card style={{ width: '18rem' }}>
           <Card.Body>
-            <Card.Title>Card Title</Card.Title>
+            <Card.Title>Card Title 1</Card.Title>
             <Card.Text>
               Some quick example text to build on the card title and make up the bulk of
               the card's content.
       </Card.Text>
           </Card.Body>
         </Card>
-
+        </div>
+        <div class="col-md-3">
         <Card style={{ width: '18rem' }}>
           <Card.Body>
             <Card.Title>Card Title 2</Card.Title>
@@ -70,27 +73,32 @@ export class Autocomplete extends Component {
       </Card.Text>
           </Card.Body>
         </Card>
-
+        </div>
+        <div class="col-md-3">
         <Card style={{ width: '18rem' }}>
           <Card.Body>
-            <Card.Title>Card Title 2</Card.Title>
+            <Card.Title>Card Title 3</Card.Title>
             <Card.Text>
               Some quick example text to build on the card title and make up the bulk of
               the card's content.
       </Card.Text>
           </Card.Body>
         </Card>
-
+        </div>
+        <div class="col-md-3">
         <Card style={{ width: '18rem' }}>
           <Card.Body>
-            <Card.Title>Card Title 2</Card.Title>
+            <Card.Title>Card Title 4</Card.Title>
             <Card.Text>
               Some quick example text to build on the card title and make up the bulk of
               the card's content.
       </Card.Text>
           </Card.Body>
         </Card>
+        </div>
+       
       </div>
+     
     );
   };
 
