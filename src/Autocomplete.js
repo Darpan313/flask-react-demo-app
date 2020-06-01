@@ -55,19 +55,18 @@ export class Autocomplete extends Component {
           value={userInput}
         /><input type="submit" value="" className="search-btn" value="Search" />
         <Router>
+        <Route path='/movieDetail/:showId/:title' component={MovieDetail}/>
         <div className="row ml-4 mr-4 mt-4">
             {this.state.movies.map((items, id) => { return(
               <div className="col col-sm-3 mt-3" >
                 <Card style={{ width: '18rem', background: '#D4FACE', height: '10rem' }}>
                   
                   <Card.Body>
-                    <Card.Title><Link to={`/movieDetail/${items.show_id}`}>{items.title}</Link></Card.Title>
+                    <Card.Title><Link to={`/movieDetail/${items.show_id}/${items.title}`}>{items.title}</Link></Card.Title>
                     <Card.Text>{items.show_id}</Card.Text>
                   </Card.Body>
                 </Card>
                 
-                <Route path='/movieDetail/:showId' component={MovieDetail}/>
-             
               </div>
               )})}
           </div>
