@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './Autocomplete.css';
 import Card from 'react-bootstrap/Card';
 import { useTheme } from 'styled-components';
+import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
 
 export class Autocomplete extends Component {
   static propTypes = {
@@ -52,19 +53,27 @@ export class Autocomplete extends Component {
           onChange={onChange}
           value={userInput}
         /><input type="submit" value="" className="search-btn" value="Search" />
+        <Router>
         <div className="row ml-4 mr-4 mt-4">
             {this.state.movies.map((items, id) => { return(
               <div className="col col-sm-3 mt-3" >
                 <Card style={{ width: '18rem', background: '#D4FACE', height: '10rem' }}>
+                  
                   <Card.Body>
-                    <Card.Title>{items.title}</Card.Title>
+                    <Card.Title><Link to="/movieDetail">{items.title}</Link></Card.Title>
                     <Card.Text>{items.show_id}</Card.Text>
                   </Card.Body>
                 </Card>
+                {/* For testing, need to replace it with component */}
+                <Route path='/movieDetail' render={()=>{
+                return (<h1>Clicked</h1>)
+              }}/>
               </div>
               )})}
           </div>
+          </Router>  
           </div>);
+          
       } else { return (
         <div className="search">
         <input type="text" className="search-box" placeholder="Enter a keyword!"
