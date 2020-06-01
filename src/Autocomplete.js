@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Autocomplete.css';
+import MovieDetail from './MovieDetail';
 import Card from 'react-bootstrap/Card';
 import { useTheme } from 'styled-components';
 import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
@@ -64,10 +65,9 @@ export class Autocomplete extends Component {
                     <Card.Text>{items.show_id}</Card.Text>
                   </Card.Body>
                 </Card>
-                {/* For testing, need to replace it with component */}
-                <Route path='/movieDetail/:showId' render={({match:{params:{showId}}})=>{
-                return (<h1>Clicked : {showId}</h1>)
-              }}/>
+                
+                <Route path='/movieDetail/:showId' component={MovieDetail}/>
+             
               </div>
               )})}
           </div>
