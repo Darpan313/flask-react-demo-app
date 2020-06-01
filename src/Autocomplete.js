@@ -2,9 +2,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Autocomplete.css';
+import MovieDetail from './MovieDetail';
 import Card from 'react-bootstrap/Card';
-
-let cardList;
+import { useTheme } from 'styled-components';
+import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
 
 export class Autocomplete extends Component {
   static propTypes = {
@@ -17,15 +18,15 @@ export class Autocomplete extends Component {
     this.state = {
       clicked: false,
       activeOptionIndex: 0,
-      filteredOptions: [],
+      movies: [],
       showOptions: false,
       userInput: ''
     };
   }
 
   onChange = (e) => {
-    const { options } = this.props;
     const userInput = e.target.value;
+<<<<<<< HEAD
     const filteredOptions = options.filter(
       (option) => option.toLowerCase().indexOf(userInput.toLowerCase()) > -1
     );
@@ -113,25 +114,30 @@ export class Autocomplete extends Component {
     } else if (e.keyCode === 38) {        //down arrow
       if (activeOptionIndex === 0) {
         return;
+=======
+    const url = `https://api-tutorial4.herokuapp.com/movies?title_like=${userInput}`;
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          activeOptionIndex: 0,
+          movies: data,
+          showOptions: true,
+          userInput
+        })
+>>>>>>> tutorial-3
       }
-      this.setState({ activeOptionIndex: activeOptionIndex - 1 });
-    } else if (e.keyCode === 40) {        //up arrow
-      if (activeOptionIndex - 1 === filteredOptions.length) {
-        return;
-      }
-      this.setState({ activeOptionIndex: activeOptionIndex + 1 });
-    }
+      )
+      .catch(err => console.log(err));
   };
-
   render() {
 
     const {
       onChange,
-      onKeyDown,
-      onClick,
-      state: { activeOptionIndex, filteredOptions, showOptions, userInput }
+      state: { activeOptionIndex, movies, showOptions, userInput }
     } = this;
 
+<<<<<<< HEAD
     let optionList;
 
     if (showOptions && userInput) {
@@ -155,8 +161,45 @@ export class Autocomplete extends Component {
 
       } else {
         optionList = (
+=======
+     if (showOptions && userInput) {
+      if (movies.length) { return(
+        <div className="search">
+        <input type="text" className="search-box" placeholder="Enter a keyword!"
+          onChange={onChange}
+          value={userInput}
+        /><input type="submit" value="" className="search-btn" value="Search" />
+        <Router>
+        <div className="row ml-4 mr-4 mt-4">
+            {this.state.movies.map((items, id) => { return(
+              <div className="col col-sm-3 mt-3" >
+                <Card style={{ width: '18rem', background: '#D4FACE', height: '10rem' }}>
+                  
+                  <Card.Body>
+                    <Card.Title><Link to={`/movieDetail/${items.show_id}`}>{items.title}</Link></Card.Title>
+                    <Card.Text>{items.show_id}</Card.Text>
+                  </Card.Body>
+                </Card>
+                
+                <Route path='/movieDetail/:showId' component={MovieDetail}/>
+             
+              </div>
+              )})}
+          </div>
+          </Router>  
+          </div>);
+          
+      } else { return (
+        <div className="search">
+        <input type="text" className="search-box" placeholder="Enter a keyword!"
+          onChange={onChange}
+          value={userInput}
+        />
+        <input type="submit" value="" className="search-btn" value="Search" />
+>>>>>>> tutorial-3
           <div className="no-suggestions">
             <em>No Option!</em>
+          </div>
           </div>
         );
       }
@@ -165,14 +208,18 @@ export class Autocomplete extends Component {
       <div className="search">
         <input type="text" className="search-box" placeholder="Enter a keyword!"
           onChange={onChange}
-          onKeyDown={onKeyDown}
           value={userInput}
         />
+<<<<<<< HEAD
 
         {optionList}
         <input type="submit" value="" className="search-btn" value="Search" />
         {this.state.clicked && <div>{cardList}</div>}
       </div>
+=======
+        <input type="submit" value="" className="search-btn" value="Search" />
+       </div>
+>>>>>>> tutorial-3
     );
   }
 }
