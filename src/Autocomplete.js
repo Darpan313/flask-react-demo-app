@@ -60,13 +60,13 @@ export class Autocomplete extends Component {
                 <Card style={{ width: '18rem', background: '#D4FACE', height: '10rem' }}>
                   
                   <Card.Body>
-                    <Card.Title><Link to="/movieDetail">{items.title}</Link></Card.Title>
+                    <Card.Title><Link to={`/movieDetail/${items.show_id}`}>{items.title}</Link></Card.Title>
                     <Card.Text>{items.show_id}</Card.Text>
                   </Card.Body>
                 </Card>
                 {/* For testing, need to replace it with component */}
-                <Route path='/movieDetail' render={()=>{
-                return (<h1>Clicked</h1>)
+                <Route path='/movieDetail/:showId' render={({match:{params:{showId}}})=>{
+                return (<h1>Clicked : {showId}</h1>)
               }}/>
               </div>
               )})}
