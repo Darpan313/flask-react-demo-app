@@ -5,7 +5,7 @@ import './Autocomplete.css';
 import MovieDetail from './MovieDetail';
 import Card from 'react-bootstrap/Card';
 import { useTheme } from 'styled-components';
-import {BrowserRouter as Router,Route,Link} from 'react-router-dom';
+import {BrowserRouter as Router,Route,Link,Switch} from 'react-router-dom';
 
 export class Autocomplete extends Component {
   static propTypes = {
@@ -49,29 +49,35 @@ export class Autocomplete extends Component {
 
      if (showOptions && userInput) {
       if (movies.length) { return(
-        <div className="search">
-        <input type="text" className="search-box" placeholder="Enter a keyword!"
-          onChange={onChange}
-          value={userInput}
-        /><input type="submit" value="" className="search-btn" value="Search" />
         <Router>
-        <Route path='/movieDetail/:showId/:title' component={MovieDetail}/>
-        <div className="row ml-4 mr-4 mt-4">
-            {this.state.movies.map((items, id) => { return(
-              <div className="col col-sm-3 mt-3" >
-                <Card style={{ width: '18rem', background: '#D4FACE', height: '10rem' }}>
-                  
-                  <Card.Body>
-                    <Card.Title><Link to={`/movieDetail/${items.show_id}/${items.title}`}>{items.title}</Link></Card.Title>
-                    <Card.Text>{items.show_id}</Card.Text>
-                  </Card.Body>
-                </Card>
-                
-              </div>
-              )})}
+          <Switch>
+            <Route path='/movieDetail/:showId/:title' component={MovieDetail}/>
+            <div>
+              <div className="search">
+              <input type="text" className="search-box" placeholder="Enter a keyword!"
+                onChange={onChange}
+                value={userInput}/>
+              <input type="submit" value="" className="search-btn" value="Search" />
+            
+              <div className="row ml-4 mr-4 mt-4">
+                  {this.state.movies.map((items, id) => { return(
+                    <div className="col col-sm-3 mt-3" >
+                      <Card style={{ width: '18rem', background: '#D4FACE', height: '10rem' }}>
+                        
+                        <Card.Body>
+                          <Card.Title><Link to={`/movieDetail/${items.show_id}/${items.title}`}>{items.title}</Link></Card.Title>
+                          <Card.Text>{items.show_id}</Card.Text>
+                        </Card.Body>
+                      </Card>
+                      
+                    </div>
+                    )})}
+                </div>
+            </div>
           </div>
-          </Router>  
-          </div>);
+        </Switch>
+      </Router>  
+      );
           
       } else { return (
         <div className="search">
