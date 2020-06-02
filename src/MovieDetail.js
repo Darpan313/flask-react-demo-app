@@ -1,4 +1,5 @@
 import React from 'react';
+import './MovieDetail.css';
 export class MovieDetail extends React.Component{
    
     constructor(props) {
@@ -13,6 +14,7 @@ export class MovieDetail extends React.Component{
         fetch(`https://api-tutorial4.herokuapp.com/movies?show_id=${this.props.match.params.showId}`)
           .then(response => response.json())
           .then((data) =>{
+            //  console.log(data)
               this.setState({ movie_details: data })
           } );
       }
@@ -23,36 +25,37 @@ export class MovieDetail extends React.Component{
             <div>
             {
                 movie &&
-                <div>
-                <table class="table">
-                  <thead>
-                  <tr>
-                  <th colspan="2"> Movie Details</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Title</td>
+                <div align="center" >
+                  <table  align="center">
+                    <th  colSpan="2">
+                      <h3 align="center">Movie Details</h3>
+                      
+                      </th>
+                      
+                      
+                      <tr>
+                      <td>Titile:</td>
                       <td>{movie.title}</td>
                     </tr>
                     <tr>
-                      <td>Type</td>
+                      <td>Type:</td>
                       <td>{movie.type}</td>
                     </tr>
                     <tr>
-                      <td>Release year</td>
+                      <td>Release year:</td>
                       <td>{movie.release_year}</td>
                     </tr>
                     <tr>
-                      <td>Description</td>
+                      <td>Description:</td>
                       <td>{movie.description}</td>
                     </tr>
                     <tr>
-                      <td>Show Id</td>
+                      <td>Show Id:</td>
                       <td>{movie.show_id}</td>
                     </tr>
-                  </tbody>
-                </table>
+                    
+
+                  </table>
                 </div>
             }
                 
