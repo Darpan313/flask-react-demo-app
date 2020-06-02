@@ -15,8 +15,6 @@ export class Autocomplete extends Component {
   constructor(propTypes) {
     super(propTypes);
 
-    this.inputTxt = React.createRef();
-
     this.state = {
       clicked: false,
       activeOptionIndex: 0,
@@ -25,7 +23,6 @@ export class Autocomplete extends Component {
       userInput: "",
     };
   }
-
   onChange = (e) => {
     const userInput = e.target.value;
     const url = `https://api-tutorial4.herokuapp.com/movies?title_like=${userInput}`;
@@ -49,144 +46,63 @@ export class Autocomplete extends Component {
       state: { activeOptionIndex, movies, showOptions, userInput },
     } = this;
 
-    if (showOptions && userInput) {
-      if (movies.length) {
-        return (
-          <Router>
-            <Switch>
-              <Route
-                path="/movieDetail/:showId/:title"
-                component={MovieDetail}
-              />
-              <div>
-                <div className="search">
-                  <input
-                    type="text"
-                    className="search-box"
-                    placeholder="Enter a keyword!"
-                    onChange={onChange}
-                    value={userInput}
-                  />
-                  <input
-                    type="submit"
-                    value=""
-                    className="search-btn"
-                    value="Search"
-                  />
-
-                  <div className="row ml-4 mr-4 mt-4">
-                    {this.state.movies.map((items, id) => {
-                      return (
-                        <div className="col col-sm-3 mt-3" key={id}>
-                          <Card
-                            style={{
-                              width: "18rem",
-                              background: "#D4FACE",
-                              height: "10rem",
-                            }}
-                          >
-                            <Card.Body>
-                              <Card.Title>
-                                <Link
-                                  to={`/movieDetail/${items.show_id}/${items.title}`}
-                                >
-                                  {items.title}
-                                </Link>
-                              </Card.Title>
-                              <Card.Text>{items.show_id}</Card.Text>
-                            </Card.Body>
-                          </Card>
-                        </div>
-                      );
-                    })}
-                  </div>
+     if (showOptions && userInput) {
+      if (movies.length) { return(
+        <Router>
+          <Switch>
+            <Route path='/movieDetail/:showId/:title' component={MovieDetail}/>
+            <div>
+              <div className="search">
+              <input autoFocus type="text" className="search-box"  
+                placeholder="Enter a keyword!"
+                onChange={onChange}
+                value={userInput}/>
+              <input type="submit" value="" className="search-btn" value="Search" />
+            
+              <div className="row ml-4 mr-4 mt-4">
+                  {this.state.movies.map((items, id) => { return(
+                    <div className="col col-sm-3 mt-3" key = {id}>
+                      <Card style={{ width: '18rem', background: '#D4FACE', height: '10rem' }}>
+                        
+                        <Card.Body>
+                          <Card.Title><Link to={`/movieDetail/${items.show_id}/${items.title}`}>{items.title}</Link></Card.Title>
+                          <Card.Text>{items.show_id}</Card.Text>
+                        </Card.Body>
+                      </Card>
+                      
+                    </div>
+                    )})}
                 </div>
+            </div>
+          </div>
+        </Switch>
+      </Router>  
+      );
+          
+      } else { return (
+            <div>
+              <div className="search">
+              <input autoFocus type="text" className="search-box" placeholder="Enter a keyword!"
+                onChange={onChange}
+                value={userInput}/>
+              <input type="submit" value="" className="search-btn" value="Search" />
+              <div className="no-suggestions">
+                <em>No Movie!</em>
               </div>
-            </Switch>
-          </Router>
-        );
-      } else {
-        return (
-          <Router>
-            <Switch>
-              <Route
-                path="/movieDetail/:showId/:title"
-                component={MovieDetail}
-              />
-              <div>
-                <div className="search">
-                  <input
-                    type="text"
-                    className="search-box"
-                    placeholder="Enter a keyword!"
-                    onChange={onChange}
-                    value={userInput}
-                  />
-                  <input
-                    type="submit"
-                    value=""
-                    className="search-btn"
-                    value="Search"
-                  />
-                  <div className="no-suggestions">
-                    <em>No Movie!</em>
-                  </div>
-                  <div className="row ml-4 mr-4 mt-4">
-                    {this.state.movies.map((items, id) => {
-                      return (
-                        <div className="col col-sm-3 mt-3" key={id}>
-                          <Card
-                            style={{
-                              width: "18rem",
-                              background: "#D4FACE",
-                              height: "10rem",
-                            }}
-                          >
-                            <Card.Body>
-                              <Card.Title>
-                                <Link
-                                  to={`/movieDetail/${items.show_id}/${items.title}`}
-                                >
-                                  {items.title}
-                                </Link>
-                              </Card.Title>
-                              <Card.Text>{items.show_id}</Card.Text>
-                            </Card.Body>
-                          </Card>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            </Switch>
-          </Router>
+            </div>
+          </div>
         );
       }
     }
     return (
-      <Router>
-        <Switch>
-          <Route path="/movieDetail/:showId/:title" component={MovieDetail} />
-          <div>
-            <div className="search">
-              <input
-                type="text"
-                className="search-box"
-                placeholder="Enter a keyword!"
+            <div>
+              <div className="search">
+              <input autoFocus type="text" className="search-box" placeholder="Enter a keyword!"
                 onChange={onChange}
-                value={userInput}
-              />
-              <input
-                type="submit"
-                value=""
-                className="search-btn"
-                value="Search"
-              />
+                value={userInput}/>
+              <input type="submit" value="" className="search-btn" value="Search" />
             </div>
           </div>
-        </Switch>
-      </Router>
     );
     return null;
   }
