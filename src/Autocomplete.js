@@ -1,15 +1,15 @@
 //Source: https://blog.bitsrc.io/building-a-react-autocomplete-component-from-scratch-b78105324f4c
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import './Autocomplete.css';
-import MovieDetail from './MovieDetail';
-import Card from 'react-bootstrap/Card';
-import { useTheme } from 'styled-components';
-import {BrowserRouter as Router,Route,Link,Switch} from 'react-router-dom';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import "./Autocomplete.css";
+import MovieDetail from "./MovieDetail";
+import Card from "react-bootstrap/Card";
+import { useTheme } from "styled-components";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 export class Autocomplete extends Component {
   static propTypes = {
-    options: PropTypes.instanceOf(Array).isRequired
+    options: PropTypes.instanceOf(Array).isRequired,
   };
 
   constructor(propTypes) {
@@ -22,7 +22,7 @@ export class Autocomplete extends Component {
       activeOptionIndex: 0,
       movies: [],
       showOptions: false,
-      userInput: ''
+      userInput: "",
     };
   }
 
@@ -36,117 +36,159 @@ export class Autocomplete extends Component {
           activeOptionIndex: 0,
           movies: data,
           showOptions: true,
-          userInput
-        })
-        this.inputTxt.current.focus(); 
-      }
-      )
-      .catch(err => console.log(err));
+          userInput,
+        });
+        this.inputTxt.current.focus();
+      })
+      .catch((err) => console.log(err));
   };
 
   render() {
-    
     const {
       onChange,
-      state: { activeOptionIndex, movies, showOptions, userInput }
+      state: { activeOptionIndex, movies, showOptions, userInput },
     } = this;
 
-     if (showOptions && userInput) {
-      if (movies.length) { return(
-        <Router>
-          <Switch>
-            <Route path='/movieDetail/:showId/:title' component={MovieDetail}/>
-            <div>
-              <div className="search">
-              <input type="text" className="search-box" placeholder="Enter a keyword!"
-                onChange={onChange}
-                value={userInput}/>
-              <input type="submit" value="" className="search-btn" value="Search" />
-            
-              <div className="row ml-4 mr-4 mt-4">
-                  {this.state.movies.map((items, id) => { return(
-                    <div className="col col-sm-3 mt-3" key = {id}>
-                      <Card style={{ width: '18rem', background: '#D4FACE', height: '10rem' }}>
-                        
-                        <Card.Body>
-                          <Card.Title><Link to={`/movieDetail/${items.show_id}/${items.title}`}>{items.title}</Link></Card.Title>
-                          <Card.Text>{items.show_id}</Card.Text>
-                        </Card.Body>
-                      </Card>
-                      
-                    </div>
-                    )})}
+    if (showOptions && userInput) {
+      if (movies.length) {
+        return (
+          <Router>
+            <Switch>
+              <Route
+                path="/movieDetail/:showId/:title"
+                component={MovieDetail}
+              />
+              <div>
+                <div className="search">
+                  <input
+                    type="text"
+                    className="search-box"
+                    placeholder="Enter a keyword!"
+                    onChange={onChange}
+                    value={userInput}
+                  />
+                  <input
+                    type="submit"
+                    value=""
+                    className="search-btn"
+                    value="Search"
+                  />
+
+                  <div className="row ml-4 mr-4 mt-4">
+                    {this.state.movies.map((items, id) => {
+                      return (
+                        <div className="col col-sm-3 mt-3" key={id}>
+                          <Card
+                            style={{
+                              width: "18rem",
+                              background: "#D4FACE",
+                              height: "10rem",
+                            }}
+                          >
+                            <Card.Body>
+                              <Card.Title>
+                                <Link
+                                  to={`/movieDetail/${items.show_id}/${items.title}`}
+                                >
+                                  {items.title}
+                                </Link>
+                              </Card.Title>
+                              <Card.Text>{items.show_id}</Card.Text>
+                            </Card.Body>
+                          </Card>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-            </div>
-          </div>
-        </Switch>
-      </Router>  
-      );
-          
-      } else { return (
-        <Router>
-          <Switch>
-            <Route path='/movieDetail/:showId/:title' component={MovieDetail}/>
-            <div>
-              <div className="search">
-              <input type="text" className="search-box" placeholder="Enter a keyword!"
-                onChange={onChange}
-                value={userInput}/>
-              <input type="submit" value="" className="search-btn" value="Search" />
-              <div className="no-suggestions">
-                <em>No Movie!</em>
               </div>
-              <div className="row ml-4 mr-4 mt-4">
-                  {this.state.movies.map((items, id) => { return(
-                    <div className="col col-sm-3 mt-3" key = {id}>
-                      <Card style={{ width: '18rem', background: '#D4FACE', height: '10rem' }}>
-                        
-                        <Card.Body>
-                          <Card.Title><Link to={`/movieDetail/${items.show_id}/${items.title}`}>{items.title}</Link></Card.Title>
-                          <Card.Text>{items.show_id}</Card.Text>
-                        </Card.Body>
-                      </Card>
-                      
-                    </div>
-                    )})}
+            </Switch>
+          </Router>
+        );
+      } else {
+        return (
+          <Router>
+            <Switch>
+              <Route
+                path="/movieDetail/:showId/:title"
+                component={MovieDetail}
+              />
+              <div>
+                <div className="search">
+                  <input
+                    type="text"
+                    className="search-box"
+                    placeholder="Enter a keyword!"
+                    onChange={onChange}
+                    value={userInput}
+                  />
+                  <input
+                    type="submit"
+                    value=""
+                    className="search-btn"
+                    value="Search"
+                  />
+                  <div className="no-suggestions">
+                    <em>No Movie!</em>
+                  </div>
+                  <div className="row ml-4 mr-4 mt-4">
+                    {this.state.movies.map((items, id) => {
+                      return (
+                        <div className="col col-sm-3 mt-3" key={id}>
+                          <Card
+                            style={{
+                              width: "18rem",
+                              background: "#D4FACE",
+                              height: "10rem",
+                            }}
+                          >
+                            <Card.Body>
+                              <Card.Title>
+                                <Link
+                                  to={`/movieDetail/${items.show_id}/${items.title}`}
+                                >
+                                  {items.title}
+                                </Link>
+                              </Card.Title>
+                              <Card.Text>{items.show_id}</Card.Text>
+                            </Card.Body>
+                          </Card>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-            </div>
-          </div>
-        </Switch>
-      </Router> 
+              </div>
+            </Switch>
+          </Router>
         );
       }
     }
     return (
       <Router>
-          <Switch>
-            <Route path='/movieDetail/:showId/:title' component={MovieDetail}/>
-            <div>
-              <div className="search">
-              <input type="text" className="search-box" placeholder="Enter a keyword!"
+        <Switch>
+          <Route path="/movieDetail/:showId/:title" component={MovieDetail} />
+          <div>
+            <div className="search">
+              <input
+                type="text"
+                className="search-box"
+                placeholder="Enter a keyword!"
                 onChange={onChange}
-                value={userInput}/>
-              <input type="submit" value="" className="search-btn" value="Search" />
-            
-              <div className="row ml-4 mr-4 mt-4">
-                  {this.state.movies.map((items, id) => { return(
-                    <div className="col col-sm-3 mt-3" key = {id}>
-                      <Card style={{ width: '18rem', background: '#D4FACE', height: '10rem' }}>
-                        
-                        <Card.Body>
-                          <Card.Title><Link to={`/movieDetail/${items.show_id}/${items.title}`}>{items.title}</Link></Card.Title>
-                          <Card.Text>{items.show_id}</Card.Text>
-                        </Card.Body>
-                      </Card>
-                      
-                    </div>
-                    )})}
-                </div>
+                value={userInput}
+              />
+              <input
+                type="submit"
+                value=""
+                className="search-btn"
+                value="Search"
+              />
             </div>
           </div>
         </Switch>
-      </Router> 
+      </Router>
     );
+    return null;
   }
 }
 
