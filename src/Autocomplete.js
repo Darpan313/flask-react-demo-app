@@ -61,7 +61,7 @@ export class Autocomplete extends Component {
             
               <div className="row ml-4 mr-4 mt-4">
                   {this.state.movies.map((items, id) => { return(
-                    <div className="col col-sm-3 mt-3" >
+                    <div className="col col-sm-3 mt-3" key = {id}>
                       <Card style={{ width: '18rem', background: '#D4FACE', height: '10rem' }}>
                         
                         <Card.Body>
