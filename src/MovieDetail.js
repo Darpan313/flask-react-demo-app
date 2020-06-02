@@ -24,12 +24,35 @@ export class MovieDetail extends React.Component{
             {
                 movie &&
                 <div>
-                <h2>Movie Details</h2>
-                <h2>Title: {movie.title}</h2>
-                <h2>Type: {movie.type}</h2>
-                <h2>Release year: {movie.release_year}</h2>
-                <h2>Description: {movie.description}</h2>
-                <h2>Show Id: {movie.show_id}</h2>
+                <table class="table">
+                  <thead>
+                  <tr>
+                  <th colspan="2"> Movie Details</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Title</td>
+                      <td>{movie.title}</td>
+                    </tr>
+                    <tr>
+                      <td>Type</td>
+                      <td>{movie.type}</td>
+                    </tr>
+                    <tr>
+                      <td>Release year</td>
+                      <td>{movie.release_year}</td>
+                    </tr>
+                    <tr>
+                      <td>Description</td>
+                      <td>{movie.description}</td>
+                    </tr>
+                    <tr>
+                      <td>Show Id</td>
+                      <td>{movie.show_id}</td>
+                    </tr>
+                  </tbody>
+                </table>
                 </div>
             }
                 
