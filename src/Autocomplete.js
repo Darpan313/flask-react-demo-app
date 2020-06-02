@@ -93,7 +93,9 @@ export class Autocomplete extends Component {
                 onChange={onChange}
                 value={userInput}/>
               <input type="submit" value="" className="search-btn" value="Search" />
-            
+                <div className="no-suggestions">
+                  <em>No Movie!</em>
+                </div>
               <div className="row ml-4 mr-4 mt-4">
                   {this.state.movies.map((items, id) => { return(
                     <div className="col col-sm-3 mt-3" key = {id}>
