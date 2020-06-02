@@ -1,15 +1,15 @@
 //Source: https://blog.bitsrc.io/building-a-react-autocomplete-component-from-scratch-b78105324f4c
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import './Autocomplete.css';
-import MovieDetail from './MovieDetail';
-import Card from 'react-bootstrap/Card';
-import { useTheme } from 'styled-components';
-import {BrowserRouter as Router,Route,Link,Switch} from 'react-router-dom';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import "./Autocomplete.css";
+import MovieDetail from "./MovieDetail";
+import Card from "react-bootstrap/Card";
+import { useTheme } from "styled-components";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 export class Autocomplete extends Component {
   static propTypes = {
-    options: PropTypes.instanceOf(Array).isRequired
+    options: PropTypes.instanceOf(Array).isRequired,
   };
 
   constructor(propTypes) {
@@ -20,7 +20,7 @@ export class Autocomplete extends Component {
       activeOptionIndex: 0,
       movies: [],
       showOptions: false,
-      userInput: ''
+      userInput: "",
     };
   }
   onChange = (e) => {
@@ -33,19 +33,17 @@ export class Autocomplete extends Component {
           activeOptionIndex: 0,
           movies: data,
           showOptions: true,
-          userInput
-        })
-        this.inputTxt.current.focus(); 
-      }
-      )
-      .catch(err => console.log(err));
+          userInput,
+        });
+        this.inputTxt.current.focus();
+      })
+      .catch((err) => console.log(err));
   };
 
   render() {
-    
     const {
       onChange,
-      state: { activeOptionIndex, movies, showOptions, userInput }
+      state: { activeOptionIndex, movies, showOptions, userInput },
     } = this;
 
      if (showOptions && userInput) {
@@ -106,6 +104,7 @@ export class Autocomplete extends Component {
             </div>
           </div>
     );
+    return null;
   }
 }
 
