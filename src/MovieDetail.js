@@ -13,7 +13,6 @@ export class MovieDetail extends React.Component{
         fetch(`https://api-tutorial4.herokuapp.com/movies?show_id=${this.props.match.params.showId}`)
           .then(response => response.json())
           .then((data) =>{
-            //  console.log(data)
               this.setState({ movie_details: data })
           } );
       }
@@ -26,7 +25,7 @@ export class MovieDetail extends React.Component{
                 movie &&
                 <div>
                 <h2>Movie Details</h2>
-                <h2>Titile: {movie.title}</h2>
+                <h2>Title: {movie.title}</h2>
                 <h2>Type: {movie.type}</h2>
                 <h2>Release year: {movie.release_year}</h2>
                 <h2>Description: {movie.description}</h2>
