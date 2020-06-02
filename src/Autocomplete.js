@@ -15,6 +15,8 @@ export class Autocomplete extends Component {
   constructor(propTypes) {
     super(propTypes);
 
+    this.inputTxt = React.createRef();
+
     this.state = {
       clicked: false,
       activeOptionIndex: 0,
@@ -36,12 +38,14 @@ export class Autocomplete extends Component {
           showOptions: true,
           userInput
         })
+        this.inputTxt.current.focus(); 
       }
       )
       .catch(err => console.log(err));
   };
-  render() {
 
+  render() {
+    
     const {
       onChange,
       state: { activeOptionIndex, movies, showOptions, userInput }
@@ -80,27 +84,68 @@ export class Autocomplete extends Component {
       );
           
       } else { return (
-        <div className="search">
-        <input type="text" className="search-box" placeholder="Enter a keyword!"
-          onChange={onChange}
-          value={userInput}
-        />
-        <input type="submit" value="" className="search-btn" value="Search" />
-          <div className="no-suggestions">
-            <em>No Option!</em>
+        <Router>
+          <Switch>
+            <Route path='/movieDetail/:showId/:title' component={MovieDetail}/>
+            <div>
+              <div className="search">
+              <input type="text" className="search-box" placeholder="Enter a keyword!"
+                onChange={onChange}
+                value={userInput}/>
+              <input type="submit" value="" className="search-btn" value="Search" />
+                <div className="no-suggestions">
+                  <em>No Movie!</em>
+                </div>
+              <div className="row ml-4 mr-4 mt-4">
+                  {this.state.movies.map((items, id) => { return(
+                    <div className="col col-sm-3 mt-3" key = {id}>
+                      <Card style={{ width: '18rem', background: '#D4FACE', height: '10rem' }}>
+                        
+                        <Card.Body>
+                          <Card.Title><Link to={`/movieDetail/${items.show_id}/${items.title}`}>{items.title}</Link></Card.Title>
+                          <Card.Text>{items.show_id}</Card.Text>
+                        </Card.Body>
+                      </Card>
+                      
+                    </div>
+                    )})}
+                </div>
+            </div>
           </div>
-          </div>
+        </Switch>
+      </Router> 
         );
       }
     }
     return (
-      <div className="search">
-        <input type="text" className="search-box" placeholder="Enter a keyword!"
-          onChange={onChange}
-          value={userInput}
-        />
-        <input type="submit" value="" className="search-btn" value="Search" />
-       </div>
+      <Router>
+          <Switch>
+            <Route path='/movieDetail/:showId/:title' component={MovieDetail}/>
+            <div>
+              <div className="search">
+              <input type="text" className="search-box" placeholder="Enter a keyword!"
+                onChange={onChange}
+                value={userInput}/>
+              <input type="submit" value="" className="search-btn" value="Search" />
+            
+              <div className="row ml-4 mr-4 mt-4">
+                  {this.state.movies.map((items, id) => { return(
+                    <div className="col col-sm-3 mt-3" key = {id}>
+                      <Card style={{ width: '18rem', background: '#D4FACE', height: '10rem' }}>
+                        
+                        <Card.Body>
+                          <Card.Title><Link to={`/movieDetail/${items.show_id}/${items.title}`}>{items.title}</Link></Card.Title>
+                          <Card.Text>{items.show_id}</Card.Text>
+                        </Card.Body>
+                      </Card>
+                      
+                    </div>
+                    )})}
+                </div>
+            </div>
+          </div>
+        </Switch>
+      </Router> 
     );
   }
 }
