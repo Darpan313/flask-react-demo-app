@@ -9,7 +9,7 @@ import {BrowserRouter as Router,Route,Link,Switch} from 'react-router-dom';
 
 export class Autocomplete extends Component {
   static propTypes = {
-    options: PropTypes.instanceOf(Array).isRequired
+    options: PropTypes.instanceOf(Array).isRequired,
   };
 
   constructor(propTypes) {
@@ -22,10 +22,9 @@ export class Autocomplete extends Component {
       activeOptionIndex: 0,
       movies: [],
       showOptions: false,
-      userInput: ''
+      userInput: "",
     };
   }
-
   onChange = (e) => {
     const userInput = e.target.value;
     const url = `https://api-tutorial4.herokuapp.com/movies?title_like=${userInput}`;
@@ -48,7 +47,7 @@ export class Autocomplete extends Component {
     
     const {
       onChange,
-      state: { activeOptionIndex, movies, showOptions, userInput }
+      state: { activeOptionIndex, movies, showOptions, userInput },
     } = this;
 
      if (showOptions && userInput) {
@@ -147,6 +146,7 @@ export class Autocomplete extends Component {
         </Switch>
       </Router> 
     );
+    return null;
   }
 }
 
