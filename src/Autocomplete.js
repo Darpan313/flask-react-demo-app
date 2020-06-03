@@ -23,12 +23,11 @@ export class Autocomplete extends Component {
       userInput: "",
     };
   }
-  onChange = (e) => {
-    const userInput = e.target.value;
-    const url = `https://api-tutorial4.herokuapp.com/movies?title_like=${userInput}`;
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
+  onChange = async (e) => {
+    try{
+    let userInput = e.target.value;
+    let response = await fetch(`https://api-tutorial4.herokuapp.com/movies?title_like=${userInput}`);
+    const data = await response.json();
         this.setState({
           activeOptionIndex: 0,
           movies: data,
@@ -36,8 +35,8 @@ export class Autocomplete extends Component {
           userInput,
         });
         this.inputTxt.current.focus();
-      })
-      .catch((err) => console.log(err));
+    }
+      catch(err) { console.log(err)}
   };
 
   render() {
