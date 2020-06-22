@@ -23,11 +23,19 @@ def getIndex(email):
     for index, i in enumerate(listOfUsers):
         if i.email == email:
             temp = index
+
+    if temp is None:
+        return "Invalid email address! Please enter a valid one."
+    
     return temp
 
 @app.route('/getMethod',methods=['GET'])
 def getMethod():
     jsonList=json.dumps([ob.__dict__ for ob in listOfUsers])
+
+    if not jsonList:
+        return "No users found!"
+
     return jsonList
 
 @app.route('/postMethod',methods=['POST'])
@@ -35,6 +43,10 @@ def postMethod():
     postData=request.json
     newUser = User(postData['username'],postData['email'])
     listOfUsers.append(newUser)
+
+    if not listOfUsers:
+        return "Error creating the user! Please try again."
+
     return "New User added!"
 
 @app.route('/putMethod',methods=['PUT'])
