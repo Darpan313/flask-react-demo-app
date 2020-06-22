@@ -1,5 +1,6 @@
 import time
 from flask import Flask
+import json
 app = Flask(__name__, static_folder="../build", static_url_path='/')
 
 class User:
@@ -41,7 +42,7 @@ def get_current_time():
     return {'time': time.time()}
 
 
-@app.route('/getMethod',methods=['GET'])
+@app.route('/user/getMethod',methods=['GET'])
 def getMethod():
     jsonList=[]
     try:
@@ -54,7 +55,7 @@ def getMethod():
     
     return jsonList
 
-@app.route('/postMethod',methods=['POST'])
+@app.route('/user/postMethod',methods=['POST'])
 def postMethod():
     try:
         postData=request.json
@@ -68,7 +69,7 @@ def postMethod():
 
     return "New User added!"
 
-@app.route('/putMethod',methods=['PUT'])
+@app.route('/user/putMethod',methods=['PUT'])
 def putMethod():
     try:
         putData=request.json
