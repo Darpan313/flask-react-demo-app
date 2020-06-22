@@ -1,5 +1,5 @@
 import time
-from flask import Flask
+from flask import Flask, request
 import json
 app = Flask(__name__, static_folder="../build", static_url_path='/')
 
@@ -40,6 +40,7 @@ def getUserIndex(username):
         for index, i in enumerate(listOfUsers):
             if i.username == username:
                 temp = index
+                print(temp)
 
         if temp is None:
             print("Invalid user name! Please enter a valid one.")
@@ -100,8 +101,11 @@ def putMethod():
 @app.route('/user/getUser',methods=['POST'])
 def getUser():
     try:
+        print("----------")
         postData = request.json
+        print("----------")
         index = getUserIndex(postData['username'])
+        print(index)
         if (index != None):
             print(listOfUsers[index])
             user=json.dumps(listOfUsers[index].__dict__)
@@ -110,6 +114,9 @@ def getUser():
             return "No User found with this username!"
     except:
         print("Something went wrong while processing the getUser request! Please try again.")
+
+if __name__ == '__main__':
+	app.run(host='0.0.0.0', port=5000)
     
 
         
