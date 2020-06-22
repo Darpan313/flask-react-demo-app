@@ -98,12 +98,10 @@ def putMethod():
     except:
         print("Something went wrong while processing the user update request! Please try again.")
 
-@app.route('/user/getUser',methods=['POST'])
+@app.route('/user/getUser',methods=['GET'])
 def getUser():
     try:
-        print("----------")
         postData = request.json
-        print("----------")
         index = getUserIndex(postData['username'])
         print(index)
         if (index != None):
