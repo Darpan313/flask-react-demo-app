@@ -47,5 +47,4 @@ def putMethod():
     else:
         return "No User found with this email!"
 
-if __name__=="__main__":
-    app.run(host="0.0.0.0",port=5000,debug=True)
+
