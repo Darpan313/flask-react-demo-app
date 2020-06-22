@@ -20,32 +20,56 @@ listOfUsers.append(user2)
 
 def getIndex(email):
     temp = None
-    for index, i in enumerate(listOfUsers):
-        if i.email == email:
-            temp = index
+
+    try:
+        for index, i in enumerate(listOfUsers):
+            if i.email == email:
+                temp = index
+
+        if temp is None:
+            print("Invalid email address! Please enter a valid one.")
+    except:
+        print("Something went wrong while fetching index of email address! Please try again.")
+
     return temp
 
 @app.route('/getMethod',methods=['GET'])
 def getMethod():
-    jsonList=json.dumps([ob.__dict__ for ob in listOfUsers])
+    jsonList=[]
+    try:
+        jsonList=json.dumps([ob.__dict__ for ob in listOfUsers])
+        if not jsonList:
+            print("No users found!")
+
+    except:
+        print("Something went wrong while fetching users! Please try again.")
+    
     return jsonList
 
 @app.route('/postMethod',methods=['POST'])
 def postMethod():
-    postData=request.json
-    newUser = User(postData['username'],postData['email'])
-    listOfUsers.append(newUser)
+    try:
+        postData=request.json
+        newUser = User(postData['username'],postData['email'])
+        listOfUsers.append(newUser)
+
+        if not listOfUsers:
+            print("Error creating the user! Please try again.")
+    except:
+        print("Something went wrong while processing the user create request! Please try again.")
+
     return "New User added!"
 
 @app.route('/putMethod',methods=['PUT'])
 def putMethod():
-    putData=request.json
-    index = getIndex(putData['email'])
-    if index:
-        listOfUsers[index].setUsername(putData['username'])
-        return "Username updated!"
-    else:
-        return "No User found with this email!"
-
-if __name__=="__main__":
-    app.run(host="0.0.0.0",port=5000,debug=True)
+    try:
+        putData=request.json
+        index = getIndex(putData['email'])
+        if index:
+            listOfUsers[index].setUsername(putData['username'])
+            return "Username updated!"
+        else:
+            return "No User found with this email!"
+    except:
+        print("Something went wrong while processing the user update request! Please try again.")
+        
