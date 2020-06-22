@@ -33,6 +33,21 @@ def getIndex(email):
 
     return temp
 
+def getUserIndex(username):
+    temp = None
+
+    try:
+        for index, i in enumerate(listOfUsers):
+            if i.username == username:
+                temp = index
+
+        if temp is None:
+            print("Invalid user name! Please enter a valid one.")
+    except:
+        print("Something went wrong while fetching index of user name! Please try again.")
+
+    return temp
+
 @app.route('/')
 def index():
 	return app.send_static_file('index.html')
@@ -81,4 +96,20 @@ def putMethod():
             return "No User found with this email!"
     except:
         print("Something went wrong while processing the user update request! Please try again.")
+
+@app.route('/user/getUser',methods=['POST'])
+def getUser():
+    try:
+        postData = request.json
+        index = getUserIndex(postData['username'])
+        if (index != None):
+            print(listOfUsers[index])
+            user=json.dumps(listOfUsers[index].__dict__)
+            return user
+        else:
+            return "No User found with this username!"
+    except:
+        print("Something went wrong while processing the getUser request! Please try again.")
+    
+
         

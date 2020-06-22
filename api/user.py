@@ -1,4 +1,4 @@
-from flask import Flask,request
+from flask import Flask,request, jsonify
 import json
 
 app = Flask(__name__, static_folder="../build", static_url_path='/')
@@ -30,6 +30,22 @@ def getIndex(email):
             print("Invalid email address! Please enter a valid one.")
     except:
         print("Something went wrong while fetching index of email address! Please try again.")
+
+    return temp
+
+def getUserIndex(username):
+    temp = None
+
+    try:
+        for index, i in enumerate(listOfUsers):
+            if i.username == username:
+                temp = index
+                print(temp)
+
+        if temp is None:
+            print("Invalid user name! Please enter a valid one.")
+    except:
+        print("Something went wrong while fetching index of user name! Please try again.")
 
     return temp
 
@@ -72,4 +88,22 @@ def putMethod():
             return "No User found with this email!"
     except:
         print("Something went wrong while processing the user update request! Please try again.")
+
+@app.route('/user/getUser',methods=['POST'])
+def getUser():
+    try:
+        postData = request.json
+        index = getUserIndex(postData['username'])
+        if (index != None):
+            print(listOfUsers[index])
+            user=json.dumps(listOfUsers[index].__dict__)
+            return user
+        else:
+            return "No User found with this username!"
+    except:
+        print("Something went wrong while processing the getUser request! Please try again.")
+
+if __name__ == '__main__':
+	app.run(host='0.0.0.0', port=5000)
+
         
