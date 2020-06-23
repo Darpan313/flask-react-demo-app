@@ -67,7 +67,10 @@ def postMethod():
     try:
         postData=request.json
         newUser = User(postData['username'],postData['email'])
-        listOfUsers.append(newUser)
+        if newUser in listOfUsers:
+            print("User already exists")
+        else:    
+            listOfUsers.append(newUser)
 
         if not listOfUsers:
             print("Error creating the user! Please try again.")
