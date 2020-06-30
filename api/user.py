@@ -108,17 +108,14 @@ def putMethod():
 
 @app.route('/user/getUser',methods=['POST'])
 def getUser():
-    try:
-        postData = request.json
-        index = getUserIndex(postData['username'])
-        if (index != None):
-            print(listOfUsers[index])
-            user=json.dumps(listOfUsers[index].__dict__)
-            return user
-        else:
-            return "No User found with this username!"
-    except:
-        print("Something went wrong while processing the getUser request! Please try again.")
+    postData = request.json
+    user = postData['username']
+    userCollection=db.User
+    results=userCollection.find({},{'username':user})
+    print(results)
+    listOfUsers=list(results)
+    jsonList=json.dumps(listOfUsers)
+    return jsonList
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=5000)
