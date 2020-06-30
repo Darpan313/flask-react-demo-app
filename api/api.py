@@ -131,10 +131,13 @@ def postMethod():
 @app.route('/user/putMethod', methods=['PUT'])
 def putMethod():
     try:
-        putData = request.json
-        index = getIndex(putData['email'])
-        if index:
-            listOfUsers[index].setUsername(putData['username'])
+        putData=request.json
+        email = putData['email']
+        user = putData['username']
+        userCollection=db.User
+        result=userCollection.find({'email':email}).count()
+        if result:
+            userCollection.update_one({"email": email},{"$set":{"username": user}})
             return "Username updated!"
         else:
             return "No User found with this email!"
