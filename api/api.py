@@ -142,21 +142,16 @@ def putMethod():
         print("Something went wrong while processing the user update request! Please try again.")
 
 
-@app.route('/user/getUser', methods=['GET'])
+@app.route('/user/getUser',methods=['GET'])
 def getUser():
-    try:
-        postData = request.json
-        index = getUserIndex(postData['username'])
-        print(index)
-        if (index != None):
-            print(listOfUsers[index])
-            user = json.dumps(listOfUsers[index].__dict__)
-            return user
-        else:
-            return "No User found with this username!"
-    except:
-        print(
-            "Something went wrong while processing the getUser request! Please try again.")
+    postData = request.json
+    user = postData['username']
+    userCollection=db.User
+    results=userCollection.find({},{'username':user})
+    print(results)
+    listOfUsers=list(results)
+    jsonList=json.dumps(listOfUsers)
+    return jsonList
 
 
 if __name__ == '__main__':
