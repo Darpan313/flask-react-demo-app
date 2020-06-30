@@ -1,7 +1,11 @@
 from flask import Flask,request, jsonify
 import json
+import pymongo
 
 app = Flask(__name__, static_folder="../build", static_url_path='/')
+
+client=pymongo.MongoClient("mongodb+srv://shwethasubash:webgroup19@webtutorial.uaxed.mongodb.net/<dbname>?retryWrites=true&w=majority")
+db=client.web
 
 class User:
     def __init__(self,username,email):
@@ -49,34 +53,44 @@ def getUserIndex(username):
 
     return temp
 
+# @app.route('/getMethod',methods=['GET'])
+# def getMethod():
+#     jsonList=[]
+#     try:
+#         jsonList=json.dumps([ob.__dict__ for ob in listOfUsers])
+#         if not jsonList:
+#             print("No users found!")
+
+#     except:
+#         print("Something went wrong while fetching users! Please try again.")
+    
+#     return jsonList
+
 @app.route('/getMethod',methods=['GET'])
 def getMethod():
-    jsonList=[]
-    try:
-        jsonList=json.dumps([ob.__dict__ for ob in listOfUsers])
-        if not jsonList:
-            print("No users found!")
-
-    except:
-        print("Something went wrong while fetching users! Please try again.")
-    
+    listOfUsers={}
+    userCollection=db.User
+    results=userCollection.find({},{'_id':0})
+    print(results)
+    listOfUsers=list(results)
+    jsonList=json.dumps(listOfUsers)
     return jsonList
 
 @app.route('/postMethod',methods=['POST'])
 def postMethod():
     try:
         postData=request.json
-        newUser = User(postData['username'],postData['email'])
-        if newUser in listOfUsers:
-            print("User already exists")
-        else:    
-            listOfUsers.append(newUser)
-
-        if not listOfUsers:
-            print("Error creating the user! Please try again.")
+        userCollection=db.User
+        newUser = {'username': postData['username'], 'email':postData['email'] }
+        userExists=userCollection.find(newUser)
+        #To check if document already exists
+        for i in userExists:
+            print(i)
+            return "User already exists!"
+        #To add the document to the collection
+        userCollection.insert_one(newUser)
     except:
         print("Something went wrong while processing the user create request! Please try again.")
-
     return "New User added!"
 
 @app.route('/putMethod',methods=['PUT'])
